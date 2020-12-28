@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  min-height: 80px;
+  padding: 10px;
+  box-shadow: inset 0px -5px 6px 0px #dee2e6;
+
+  & .subtitle {
+    &:before {
+      border-left: 1px solid #ccc;
+      width: 1px;
+      margin: 10px;
+    }
+  }
+}

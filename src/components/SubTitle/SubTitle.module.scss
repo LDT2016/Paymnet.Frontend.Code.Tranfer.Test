@@ -1,0 +1,14 @@
+.subtitle {
+  display: flex;
+  flex-direction: row;
+  color: #000000;
+  align-items: center;
+  flex: 1;
+
+  & .border {
+    border-left: 1px solid #ccc;
+    height: 55px;
+    margin: 0 15px;
+    width: 1px;
+  }
+}

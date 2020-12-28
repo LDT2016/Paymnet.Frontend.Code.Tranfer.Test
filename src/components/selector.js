@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const getAreaNo = createSelector(
+export const getPaymentInfo = createSelector(
   (state) => state,
-  (state) => state.parameters.areaNo
+  (state) => state.getPaymentInfo
 );

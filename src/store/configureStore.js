@@ -1,7 +1,7 @@
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 
-import parameters from "../slices/parameters";
-import thunk from "redux-thunk";
+import paymentInfo from '../slices/paymentInfo';
+import thunk from 'redux-thunk';
 
 export default function configureStore(initialState) {
   // const reducers = {
@@ -13,10 +13,10 @@ export default function configureStore(initialState) {
 
   // In development, use the browser's Redux dev tools extension if installed
   const enhancers = [];
-  const isDevelopment = process.env.NODE_ENV === "development";
+  const isDevelopment = process.env.NODE_ENV === 'development';
   if (
     isDevelopment &&
-    typeof window !== "undefined" &&
+    typeof window !== 'undefined' &&
     window.devToolsExtension
   ) {
     enhancers.push(window.devToolsExtension());
@@ -26,7 +26,7 @@ export default function configureStore(initialState) {
     //console.log = function () {};
   }
 
-  const rootReducer = combineReducers({ parameters });
+  const rootReducer = combineReducers({ paymentInfo });
 
   return createStore(
     rootReducer,

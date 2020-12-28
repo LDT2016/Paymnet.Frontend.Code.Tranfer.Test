@@ -1,8 +1,8 @@
-import './App.scss';
+import "./App.scss";
 
-import Parking from './components/Parking';
-import React from 'react';
+import Main from "./components/Main";
+import React from "react";
 
 export default () => {
-  return <Parking />;
+  return <Main />;
 };
