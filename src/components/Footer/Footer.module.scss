@@ -1,11 +1,14 @@
 .footer {
+  display: flex;
   background-color: #5d5f5e;
   box-shadow: inset 1px 1px 1px 1px #dee2e6;
-  font-size: 50px;
+  font-size: 35px;
   color: #ffffff;
   text-align: center;
+  align-items: center;
   position: fixed;
-
   width: 100%;
   bottom: 0;
+  height: 75px;
+  justify-content: center;
 }

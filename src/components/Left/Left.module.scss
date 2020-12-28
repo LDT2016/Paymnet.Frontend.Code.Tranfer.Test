@@ -1,0 +1,33 @@
+.left {
+  display: flex;
+  justify-self: start;
+  flex-direction: column;
+  text-align: center;
+  width: 300px;
+  height: 1000px;
+  color: #474747;
+  align-items: center;
+  & .label {
+    margin: 20px;
+    font-size: 35px;
+    font-weight: 700;
+  }
+
+  & .photo {
+    width: 180px;
+    height: 220px;
+    border: 2px solid #1fa8f8;
+    background-color: #91c9ec;
+  }
+
+  & .name {
+    margin: 20px 20px 0 20px;
+    font-size: 35px;
+    font-weight: 700;
+  }
+  & .number {
+    margin: 10px;
+    font-size: 35px;
+    font-weight: 700;
+  }
+}

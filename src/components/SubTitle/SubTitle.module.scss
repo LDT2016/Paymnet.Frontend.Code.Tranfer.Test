@@ -11,4 +11,10 @@
     margin: 0 15px;
     width: 1px;
   }
+
+  & .lines {
+    & > div {
+      text-shadow: #38413d75 2px 4px 3px;
+    }
+  }
 }
