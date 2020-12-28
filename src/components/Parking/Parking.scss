@@ -1,0 +1,68 @@
+// 320*192
+.parking {
+  min-height: 192px;
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  & .parking-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e1e1e1;
+    min-height: 96px;
+    min-width: 160px;
+    & .parking-logo {
+      background-repeat: no-repeat;
+      max-height: 96px;
+    }
+  }
+  & .parking-empty-wrapper {
+    min-height: 96px;
+    min-width: 160px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    & .parking-empty-label {
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      color: #ffffff;
+      font-size: 20px;
+      & .parking-empty-label-P {
+        width: 90px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        border: solid 5px #ffffff;
+        font-size: 30px;
+        margin: 5px 5px 0 5px;
+      }
+      & .parking-empty-label-text {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin: 10px;
+        font-size: 18px;
+      }
+    }
+
+    & .parking-empty-arrow {
+      margin: 5px 5px 0 5px;
+    }
+
+    & .parking-empty-number {
+      width: 90px;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      border: solid 5px #ffff00;
+      font-size: 30px;
+      margin: 5px 5px 0 5px;
+      color: #00ff00;
+    }
+  }
+}
