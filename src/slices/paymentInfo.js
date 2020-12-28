@@ -17,8 +17,8 @@ const paymentInfoSlice = createSlice({
   name: 'paymentInfo',
   initialState: initialState,
   reducers: {
-    setAreaNo(state, action) {
-      state.areaNo = action.payload;
+    init(state, action) {
+      Object.assign(state, action.payload);
     },
   },
 });

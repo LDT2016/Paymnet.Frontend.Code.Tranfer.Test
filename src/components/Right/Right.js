@@ -1,7 +1,10 @@
 import React from 'react';
+import { getPaymentInfo } from '../selector';
 import styles from './Right.module.scss';
+import { useSelector } from 'react-redux';
 
 const Right = () => {
+  const payment = useSelector(getPaymentInfo);
   return (
     <>
       <div className={styles['right']}>
@@ -9,30 +12,30 @@ const Right = () => {
         <div className={styles['info']}>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'姓名：'}</div>
-            <div className={styles['val']}>{'张志远'}</div>
+            <div className={styles['val']}>{payment.patients}</div>
           </div>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'收费信息：'}</div>
-            <div className={styles['val']}>{'市医保'}</div>
+            <div className={styles['val']}>{payment.patients}</div>
           </div>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'应收：'}</div>
             <div className={styles['val']}>
-              <span className={styles['account']}>{'125'}</span>
+              <span className={styles['account']}>{payment.accountReal}</span>
               {'元'}
             </div>
           </div>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'实收：'}</div>
             <div className={styles['val']}>
-              <span className={styles['account']}>{'200'}</span>
+              <span className={styles['account']}>{payment.accountDue}</span>
               {'元'}
             </div>
           </div>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'找零：'}</div>
             <div className={styles['val']}>
-              <span className={styles['account']}>{'75'}</span>
+              <span className={styles['account']}>{payment.accountChange}</span>
               {'元'}
             </div>
           </div>
