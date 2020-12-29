@@ -8,18 +8,22 @@ const Left = () => {
   return (
     <>
       <div className={styles['left']}>
-        <div className={styles['label']}>{'员工信息'}</div>
-        <div className={styles['photo']}>
-          {payment.doctorPhoto && (
-            <img
-              className={styles['photo-img']}
-              src={payment.doctorPhoto}
-              alt={payment.doctorName}
-            />
-          )}
-        </div>
-        <div className={styles['name']}>{payment.doctorName}</div>
-        <div className={styles['number']}>{payment.doctorNo}</div>
+        {payment && (
+          <>
+            <div className={styles['label']}>{'员工信息'}</div>
+            <div className={styles['photo']}>
+              {payment.doctorPhoto && (
+                <img
+                  className={styles['photo-img']}
+                  src={payment.doctorPhoto}
+                  alt={payment.doctorName}
+                />
+              )}
+            </div>
+            <div className={styles['name']}>{payment.doctorName}</div>
+            <div className={styles['number']}>{payment.doctorNo}</div>
+          </>
+        )}
       </div>
     </>
   );

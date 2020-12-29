@@ -32,12 +32,6 @@ const useSetup = () => {
       _mount = false;
     };
   }, []);
-
-  useEffect(() => {
-    if (paymentInfo.id) {
-      tts && tts(paymentInfo.id);
-    }
-  }, [paymentInfo.id]);
 };
 
 export default useSetup;
