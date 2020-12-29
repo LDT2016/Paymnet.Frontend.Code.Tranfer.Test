@@ -1,14 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { get } from '../utils/request';
-import { getPaymentInfo as getPaymentInfoSelector } from './selector';
 import { init } from '../slices/paymentInfo';
+import { useDispatch } from 'react-redux';
 
 const useSetup = () => {
   let _mount = true;
   const dispatch = useDispatch();
-  const paymentInfo = useSelector(getPaymentInfoSelector);
   const setupTick = 10 * 1000;
   const [refreshTimer, setRefreshTimer] = useState(null);
   const getPaymentInfo = () => {

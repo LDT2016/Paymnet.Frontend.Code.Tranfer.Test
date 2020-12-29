@@ -32,6 +32,7 @@ const Right = () => {
         }
       } catch (_error) {}
     }
+    // eslint-disable-next-line
   }, [payment.id]);
   return (
     <>
@@ -49,21 +50,27 @@ const Right = () => {
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'应收：'}</div>
             <div className={styles['val']}>
-              <span className={styles['account']}>{payment.accountDue}</span>
+              <span className={styles['account']}>
+                {payment.accountDue ? payment.accountDue : 0}
+              </span>
               {'元'}
             </div>
           </div>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'实收：'}</div>
             <div className={styles['val']}>
-              <span className={styles['account']}>{payment.accountReal}</span>
+              <span className={styles['account']}>
+                {payment.accountReal ? payment.accountReal : 0}
+              </span>
               {'元'}
             </div>
           </div>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'找零：'}</div>
             <div className={styles['val']}>
-              <span className={styles['account']}>{payment.accountChange}</span>
+              <span className={styles['account']}>
+                {payment.accountChange ? payment.accountChange : 0}
+              </span>
               {'元'}
             </div>
           </div>
