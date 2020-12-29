@@ -1,20 +1,29 @@
 import React from 'react';
+import { getCompanyInfo } from '../selector';
 import styles from './SubTitle.module.scss';
+import { useSelector } from 'react-redux';
 
 const SubTitle = () => {
+  const company = useSelector(getCompanyInfo);
   return (
     <>
       <div className={styles['subtitle']}>
-        <div className={styles['border']} />
-        <div className={styles['lines']}>
-          <div className={styles['line0']}>
-            {'中文域名：威海市妇女儿童医院.公益'}
-          </div>
-          <div className={styles['line1']}>{'威海市立第二医院'}</div>
-          <div className={styles['line2']}>
-            {'青岛大学附属威海实例第二医院'}
-          </div>
-        </div>
+        {company.subTitle && (
+          <>
+            <div className={styles['border']} />
+            <div className={styles['lines']}>
+              {company.subTitle.line0 && (
+                <div className={styles['line0']}>{company.subTitle.line0}</div>
+              )}
+              {company.subTitle.line1 && (
+                <div className={styles['line1']}>{company.subTitle.line1}</div>
+              )}
+              {company.subTitle.line2 && (
+                <div className={styles['line2']}>{company.subTitle.line2}</div>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </>
   );

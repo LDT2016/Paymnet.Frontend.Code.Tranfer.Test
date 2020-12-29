@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 
+import companyInfo from '../slices/companyInfo';
 import paymentInfo from '../slices/paymentInfo';
 import thunk from 'redux-thunk';
 
@@ -26,7 +27,7 @@ export default function configureStore(initialState) {
     //console.log = function () {};
   }
 
-  const rootReducer = combineReducers({ paymentInfo });
+  const rootReducer = combineReducers({ paymentInfo, companyInfo });
 
   return createStore(
     rootReducer,
