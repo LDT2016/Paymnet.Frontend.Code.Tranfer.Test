@@ -2,11 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   title: '',
-  subTitle: {
-    line0: '',
-    line1: '',
-    line2: '',
-  },
+  sub_line0: '',
+  sub_line1: '',
+  sub_line2: '',
 };
 
 const companyInfoSlice = createSlice({

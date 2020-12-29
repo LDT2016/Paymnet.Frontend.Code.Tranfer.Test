@@ -1,3 +1,4 @@
+import { filterParams, getHiddenValue } from '../utils/common';
 import { useEffect, useState } from 'react';
 
 import { init as companyInit } from '../slices/companyInfo';
@@ -17,10 +18,19 @@ const useSetup = () => {
     });
     getPaymentInfoTimeout();
   };
+
   const getCompanyInfo = () => {
+    const company = filterParams({
+      title: getHiddenValue('company_title'),
+      sub_line0: getHiddenValue('company_sub_line0'),
+      sub_line1: getHiddenValue('company_sub_line1'),
+      sub_line2: getHiddenValue('company_sub_line2'),
+    });
+
+    _mount && dispatch(companyInit(company));
     get('/api/Company').then((res) => {
-      const company = res.data;
-      _mount && dispatch(companyInit(company));
+      const companyData = Object.assign({}, res.data, company);
+      _mount && dispatch(companyInit(companyData));
     });
   };
   const getPaymentInfoTimeout = () => {
