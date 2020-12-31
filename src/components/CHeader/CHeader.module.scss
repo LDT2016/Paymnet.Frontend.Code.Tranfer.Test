@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 10px;
+  box-shadow: 0px 0px 3px 4px #dee2e6;
+  height: 80px;
+  .title {
+    color: #000000;
+    flex: 1;
+  }
+
+  .category {
+    color: #3299f9;
+    margin-right: 20px;
+    font-size: 25px;
+    font-weight: 700;
+  }
+}

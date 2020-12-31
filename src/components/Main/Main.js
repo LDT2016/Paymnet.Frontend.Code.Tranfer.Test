@@ -12,7 +12,7 @@ const Main = () => {
       <div className={styles['main']}>
         <Header />
         <Body />
-        <Footer />
+        <Footer text={'请留意语音提示及屏幕信息，保持安静，有序排队！'} />
       </div>
     </>
   );

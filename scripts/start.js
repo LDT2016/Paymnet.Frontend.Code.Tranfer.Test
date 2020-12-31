@@ -7,13 +7,12 @@ process.env.NODE_ENV = 'development';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
 // Ensure environment variables are read.
 require('../config/env');
-
 
 const fs = require('fs');
 const chalk = require('react-dev-utils/chalk');
@@ -36,7 +35,14 @@ const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+if (
+  !checkRequiredFiles([
+    paths.appHtml,
+    paths.appIndexJs,
+    paths.cvoid19AppHtml,
+    paths.appCvoid19Js,
+  ])
+) {
   process.exit(1);
 }
 
@@ -70,7 +76,7 @@ checkBrowsers(paths.appPath, isInteractive)
     // run on a different port. `choosePort()` Promise resolves to the next free port.
     return choosePort(HOST, DEFAULT_PORT);
   })
-  .then(port => {
+  .then((port) => {
     if (port == null) {
       // We have not found a port.
       return;
@@ -82,9 +88,9 @@ checkBrowsers(paths.appPath, isInteractive)
     const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
     const urls = prepareUrls(protocol, HOST, port);
     const devSocket = {
-      warnings: warnings =>
+      warnings: (warnings) =>
         devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-      errors: errors =>
+      errors: (errors) =>
         devServer.sockWrite(devServer.sockets, 'errors', errors),
     };
     // Create a webpack compiler that is configured with custom messages.
@@ -108,7 +114,7 @@ checkBrowsers(paths.appPath, isInteractive)
     );
     const devServer = new WebpackDevServer(compiler, serverConfig);
     // Launch WebpackDevServer.
-    devServer.listen(port, HOST, err => {
+    devServer.listen(port, HOST, (err) => {
       if (err) {
         return console.log(err);
       }
@@ -132,14 +138,14 @@ checkBrowsers(paths.appPath, isInteractive)
       openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close();
         process.exit();
       });
     });
   })
-  .catch(err => {
+  .catch((err) => {
     if (err && err.message) {
       console.log(err.message);
     }

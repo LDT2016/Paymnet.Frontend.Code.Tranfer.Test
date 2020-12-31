@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './Footer.module.scss';
 
-const Footer = () => {
+const Footer = (props) => {
+  const { text } = props;
   return (
     <>
-      <div className={styles['footer']}>
-        {'请留意语音提示及屏幕信息，保持安静，有序排队！'}
-      </div>
+      <div className={styles['footer']}>{text}</div>
     </>
   );
 };

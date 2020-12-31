@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import Top from '../Top';
 import { getPaymentInfo } from '../selector';
 import styles from './Right.module.scss';
 import { useSelector } from 'react-redux';
@@ -37,7 +38,7 @@ const Right = () => {
   return (
     <>
       <div className={styles['right']}>
-        <div className={styles['top']}>{'请您仔细核对以下收费信息'}</div>
+        <Top text={'请您仔细核对以下收费信息'} />
         <div className={styles['info']}>
           <div className={styles['cell']}>
             <div className={styles['lbl']}>{'姓名：'}</div>
