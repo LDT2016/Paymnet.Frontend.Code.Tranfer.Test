@@ -5,32 +5,37 @@ import {
 } from '../selector';
 import {
   init as queueHistInit,
+  setPageFlipTick,
   setPageIndex as setQueuePageIndex,
   setQueuePageLoad,
 } from '../../slices/queueHistSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { QUEUE_LIST_PAGESIZE } from '../../utils/constants';
 import { init as companyInit } from '../../slices/companyInfo';
 import { get } from '../../utils/request';
-import { useDispatch } from 'react-redux';
 
 const useVaccineSetup = () => {
   let _mount = true;
   const dispatch = useDispatch();
 
-  const listQueryTick = 10 * 1000 * 20;
+  const listQueryTick = 10 * 1000 * 2;
   const [refreshTimer, setRefreshTimer] = useState(null);
 
-  const pageFlipTick = 10 * 1000;
+  const pageFlipTick = useSelector((state) => state.queueHist.pageFlipTick);
   const [pageFlipTimer, setPageFlipTimer] = useState(null);
 
   const getCompanyInfo = () => {
     const company = filterParams({
       title: getHiddenValue('company_title'),
+      sub_line0: getHiddenValue('company_sub_line0'),
     });
-
-    _mount && dispatch(companyInit(company));
+    const pageFlipTick = filterParams({
+      tick: parseInt(getHiddenValue('hidPageFlipSecond')) * 1000,
+    });
+    dispatch(companyInit(company));
+    dispatch(setPageFlipTick(pageFlipTick));
     get('/api/Company').then((res) => {
       const companyData = Object.assign({}, res.data, company);
       _mount && dispatch(companyInit(companyData));

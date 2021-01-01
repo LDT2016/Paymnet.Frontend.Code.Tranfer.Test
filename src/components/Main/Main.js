@@ -3,7 +3,7 @@ import Footer from '../Footer';
 import Header from '../Header';
 import React from 'react';
 import styles from './Main.module.scss';
-import useSetup from '../useSetup';
+import useSetup from '../hooks/useSetup';
 
 const Main = () => {
   useSetup();

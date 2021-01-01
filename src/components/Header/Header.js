@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <>
       <div className={styles['header']}>
-        <Logo />
+        <Logo icon={'payment-logo.jpg'} />
         <Title />
         <SubTitle />
         <CurrentTime />

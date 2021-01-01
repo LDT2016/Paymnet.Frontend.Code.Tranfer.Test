@@ -4,6 +4,7 @@ const initialState = {
   list: [],
   pageIndex: 0,
   isPostLoad: true,
+  pageFlipTick: 1000 * 10 * 1,
 };
 
 const queueHistSlice = createSlice({
@@ -25,6 +26,13 @@ const queueHistSlice = createSlice({
     setQueuePageLoad(state) {
       state.isPostLoad = false;
     },
+    setPageFlipTick(state, action) {
+      const { tick } = action.payload;
+      tick &&
+        (() => {
+          state.pageFlipTick = tick;
+        })();
+    },
   },
 });
 
@@ -33,6 +41,7 @@ export const {
   hide,
   setPageIndex,
   setQueuePageLoad,
+  setPageFlipTick,
 } = queueHistSlice.actions;
 
 export default queueHistSlice.reducer;
