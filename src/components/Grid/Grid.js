@@ -2,7 +2,7 @@ import React from 'react';
 import Td from '../Td';
 import Top from '../Top';
 import Tr from '../Tr';
-import styles from './Grid.module.scss';
+import styles from '../CMain/CMain.module.scss';
 
 const Grid = (props) => {
   const { children } = props;

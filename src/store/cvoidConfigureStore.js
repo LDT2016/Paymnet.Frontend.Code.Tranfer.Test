@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 
 import companyInfo from '../slices/companyInfo';
-import paymentInfo from '../slices/paymentInfo';
+import queueHist from '../slices/queueHistSlice';
 import thunk from 'redux-thunk';
 
 export default function cvoidConfigureStore(initialState) {
@@ -27,7 +27,7 @@ export default function cvoidConfigureStore(initialState) {
     //console.log = function () {};
   }
 
-  const rootReducer = combineReducers({ paymentInfo, companyInfo });
+  const rootReducer = combineReducers({ queueHist, companyInfo });
 
   return createStore(
     rootReducer,

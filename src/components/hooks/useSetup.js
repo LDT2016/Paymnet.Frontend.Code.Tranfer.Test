@@ -1,9 +1,9 @@
-import { filterParams, getHiddenValue } from '../utils/common';
+import { filterParams, getHiddenValue } from '../../utils/common';
 import { useEffect, useState } from 'react';
 
-import { init as companyInit } from '../slices/companyInfo';
-import { get } from '../utils/request';
-import { init as paymentInit } from '../slices/paymentInfo';
+import { init as companyInit } from '../../slices/companyInfo';
+import { get } from '../../utils/request';
+import { init as paymentInit } from '../../slices/paymentInfo';
 import { useDispatch } from 'react-redux';
 
 const useSetup = () => {

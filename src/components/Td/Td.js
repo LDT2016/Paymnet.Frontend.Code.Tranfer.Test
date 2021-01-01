@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Td.module.scss';
+import styles from '../CMain/CMain.module.scss';
 
 const Td = ({ children }) => {
   return (

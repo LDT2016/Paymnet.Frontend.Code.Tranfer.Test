@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Tr.module.scss';
+import styles from '../CMain/CMain.module.scss';
 
 const Tr = ({ children }) => {
   return (
