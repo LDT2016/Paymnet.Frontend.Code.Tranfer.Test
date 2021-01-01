@@ -20,7 +20,6 @@ const queueHistSlice = createSlice({
     },
     setPageIndex(state, action) {
       const { index } = action.payload;
-      console.log('action.payload: ', action.payload);
       state.pageIndex = index;
     },
     setQueuePageLoad(state) {

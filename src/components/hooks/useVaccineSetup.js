@@ -19,7 +19,7 @@ const useVaccineSetup = () => {
   let _mount = true;
   const dispatch = useDispatch();
 
-  const setupTick = 10 * 1000;
+  const listQueryTick = 10 * 1000 * 20;
   const [refreshTimer, setRefreshTimer] = useState(null);
 
   const pageFlipTick = 10 * 1000;
@@ -40,23 +40,24 @@ const useVaccineSetup = () => {
   const getQueueList = () => (dispatch) => {
     get('/api/Vaccine').then((res) => {
       dispatch(queueHistInit({ list: res.data }));
-      dispatch(getQueueListPageFlip());
+      //dispatch(getQueueListPageFlip());
     });
     getQueueListTimeout();
   };
+
   const getQueueListTimeout = () => {
     !refreshTimer && clearTimeout(refreshTimer);
     const timer = setTimeout(() => {
       dispatch(getQueueList());
-    }, setupTick);
+    }, listQueryTick);
     _mount && setRefreshTimer(timer);
   };
 
   const getQueueListPageFlip = () => (dispatch, getState) => {
     const state = getState();
-    const queueHist = state.queueHist;
-    if (queueHist.length > 0) {
-      const totalPages = Math.ceil(queueHist.length / QUEUE_LIST_PAGESIZE);
+    const list = state.queueHist.list;
+    if (list.length > 0) {
+      const totalPages = Math.ceil(list.length / QUEUE_LIST_PAGESIZE);
       const isPostLoad = getCurrentQueueListPageLoad(state);
       if (totalPages > 1) {
         const currentQueueListPageIndex = getCurrentQueueListPageIndex(state);
@@ -85,6 +86,7 @@ const useVaccineSetup = () => {
   useEffect(() => {
     getCompanyInfo();
     dispatch(getQueueList());
+    dispatch(getQueueListPageFlip());
     return () => {
       !refreshTimer && clearTimeout(refreshTimer);
       // eslint-disable-next-line

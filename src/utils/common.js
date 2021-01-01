@@ -1,3 +1,5 @@
+import { get } from './request';
+
 export const getHiddenValue = (hidId) => {
   let hiddenVal = '';
   if (document.getElementById(hidId) && document.getElementById(hidId).value) {
@@ -19,4 +21,21 @@ export const filterParams = (obj) => {
     }
   }
   return _newPar;
+};
+
+export const ttsAction = (msg) => {
+  try {
+    if (window.tts && typeof window.tts === 'function') {
+      window.tts(msg);
+    }
+  } catch (_error) {}
+};
+
+export const ttsAction1 = (text) => (dispatch) => {
+  try {
+    console.log('ttsAction1-text: ', text);
+
+    const url = 'http://localhost:8000/my/tts?' + text;
+    get(url);
+  } catch (_error) {}
 };
