@@ -137,6 +137,23 @@ module.exports = function (webpackEnv) {
     return loaders;
   };
 
+  const tempOutputHtmlMinifyOptions = isEnvProduction
+    ? {
+        minify: {
+          removeComments: false,
+          collapseWhitespace: false,
+          removeRedundantAttributes: false,
+          useShortDoctype: false,
+          removeEmptyAttributes: false,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: false,
+          minifyCSS: true,
+          minifyURLs: true,
+        },
+      }
+    : undefined;
+
   return {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
@@ -184,7 +201,7 @@ module.exports = function (webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction
-        ? 'static/js/[name].[contenthash:8].js'
+        ? 'static/js/[name].js'
         : isEnvDevelopment && 'static/js/bundle.js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
@@ -265,21 +282,21 @@ module.exports = function (webpackEnv) {
           sourceMap: shouldUseSourceMap,
         }),
         // This is only used in production mode
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            parser: safePostCssParser,
-            map: shouldUseSourceMap
-              ? {
-                  // `inline: false` forces the sourcemap to be output into a
-                  // separate file
-                  inline: false,
-                  // `annotation: true` appends the sourceMappingURL to the end of
-                  // the css file, helping the browser find the sourcemap
-                  annotation: true,
-                }
-              : false,
-          },
-        }),
+        // new OptimizeCSSAssetsPlugin({
+        //   cssProcessorOptions: {
+        //     parser: safePostCssParser,
+        //     map: shouldUseSourceMap
+        //       ? {
+        //           // `inline: false` forces the sourcemap to be output into a
+        //           // separate file
+        //           inline: false,
+        //           // `annotation: true` appends the sourceMappingURL to the end of
+        //           // the css file, helping the browser find the sourcemap
+        //           annotation: true,
+        //         }
+        //       : false,
+        //   },
+        // }),
       ],
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
@@ -553,22 +570,7 @@ module.exports = function (webpackEnv) {
       //         inject: true,
       //         template: paths.appHtml,
       //       },
-      //       isEnvProduction
-      //         ? {
-      //             minify: {
-      //               removeComments: true,
-      //               collapseWhitespace: true,
-      //               removeRedundantAttributes: true,
-      //               useShortDoctype: true,
-      //               removeEmptyAttributes: true,
-      //               removeStyleLinkTypeAttributes: true,
-      //               keepClosingSlash: true,
-      //               minifyJS: true,
-      //               minifyCSS: true,
-      //               minifyURLs: true,
-      //             },
-      //           }
-      //         : undefined
+      //       { ...tempOutputHtmlMinifyOptions }
       //     )
       //   ),
       isEnvProduction &&
@@ -581,22 +583,7 @@ module.exports = function (webpackEnv) {
               inject: true,
               template: paths.cvoid19AppHtml,
             },
-            isEnvProduction
-              ? {
-                  minify: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    removeRedundantAttributes: true,
-                    useShortDoctype: true,
-                    removeEmptyAttributes: true,
-                    removeStyleLinkTypeAttributes: true,
-                    keepClosingSlash: true,
-                    minifyJS: true,
-                    minifyCSS: true,
-                    minifyURLs: true,
-                  },
-                }
-              : undefined
+            { ...tempOutputHtmlMinifyOptions }
           )
         ),
       // Inlines the webpack runtime script. This script is too small to warrant
@@ -637,7 +624,7 @@ module.exports = function (webpackEnv) {
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
-          filename: 'static/css/[name].[contenthash:8].css',
+          filename: 'static/css/[name].css',
           //chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }),
       // Generate an asset manifest file with the following content:
