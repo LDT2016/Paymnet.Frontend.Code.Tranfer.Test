@@ -60,7 +60,7 @@ const useVaccineSetup = () => {
 
   const getQueueListPageFlip = () => (dispatch, getState) => {
     const state = getState();
-    const list = state.queueHist.list;
+    const list = state.queueHist.list.filter((x) => x.remainMins > 0);
     if (list.length > 0) {
       const totalPages = Math.ceil(list.length / QUEUE_LIST_PAGESIZE);
       const isPostLoad = getCurrentQueueListPageLoad(state);

@@ -543,41 +543,41 @@ module.exports = function (webpackEnv) {
           )
         ),
       // Generates an `index.html` file with the <script> injected.
-      isEnvProduction &&
-        new HtmlWebpackPlugin(
-          Object.assign(
-            {},
-            {
-              chunks: ['main'],
-              filename: 'index.html',
-              inject: true,
-              template: paths.appHtml,
-            },
-            isEnvProduction
-              ? {
-                  minify: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    removeRedundantAttributes: true,
-                    useShortDoctype: true,
-                    removeEmptyAttributes: true,
-                    removeStyleLinkTypeAttributes: true,
-                    keepClosingSlash: true,
-                    minifyJS: true,
-                    minifyCSS: true,
-                    minifyURLs: true,
-                  },
-                }
-              : undefined
-          )
-        ),
+      // isEnvProduction &&
+      //   new HtmlWebpackPlugin(
+      //     Object.assign(
+      //       {},
+      //       {
+      //         chunks: ['main'],
+      //         filename: 'index.html',
+      //         inject: true,
+      //         template: paths.appHtml,
+      //       },
+      //       isEnvProduction
+      //         ? {
+      //             minify: {
+      //               removeComments: true,
+      //               collapseWhitespace: true,
+      //               removeRedundantAttributes: true,
+      //               useShortDoctype: true,
+      //               removeEmptyAttributes: true,
+      //               removeStyleLinkTypeAttributes: true,
+      //               keepClosingSlash: true,
+      //               minifyJS: true,
+      //               minifyCSS: true,
+      //               minifyURLs: true,
+      //             },
+      //           }
+      //         : undefined
+      //     )
+      //   ),
       isEnvProduction &&
         new HtmlWebpackPlugin(
           Object.assign(
             {},
             {
               chunks: ['cvoid19'],
-              filename: 'cvoid19.html',
+              filename: 'index.html',
               inject: true,
               template: paths.cvoid19AppHtml,
             },
