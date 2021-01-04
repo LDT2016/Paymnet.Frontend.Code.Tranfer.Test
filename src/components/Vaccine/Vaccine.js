@@ -22,7 +22,7 @@ const Vaccine = (props) => {
               <Td>{number}</Td>
               <Td>{serveTime}</Td>
               <Td>{endTime}</Td>
-              <Td>{remainMins}</Td>
+              <Td>{`${remainMins}分钟`}</Td>
             </>
           )}
         </Tr>
