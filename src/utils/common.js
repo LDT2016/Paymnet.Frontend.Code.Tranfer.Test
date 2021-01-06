@@ -34,8 +34,7 @@ export const ttsAction = (msg) => {
 export const ttsAction1 = (text) => (dispatch) => {
   try {
     console.log('ttsAction1-text: ', text);
-
     const url = 'http://localhost:8000/my/tts?' + text;
-    get(url);
+    return get(url);
   } catch (_error) {}
 };

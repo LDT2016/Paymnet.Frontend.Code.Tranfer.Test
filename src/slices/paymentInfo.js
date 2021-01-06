@@ -20,9 +20,12 @@ const paymentInfoSlice = createSlice({
     init(state, action) {
       Object.assign(state, action.payload);
     },
+    hide(state) {
+      Object.assign(state, initialState);
+    },
   },
 });
 
-export const { init } = paymentInfoSlice.actions;
+export const { init, hide } = paymentInfoSlice.actions;
 
 export default paymentInfoSlice.reducer;

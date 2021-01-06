@@ -1,21 +1,30 @@
 import { filterParams, getHiddenValue } from '../../utils/common';
+import {
+  hide as paymentHide,
+  init as paymentInit,
+} from '../../slices/paymentInfo';
 import { useEffect, useState } from 'react';
 
 import { init as companyInit } from '../../slices/companyInfo';
 import { get } from '../../utils/request';
-import { init as paymentInit } from '../../slices/paymentInfo';
 import { useDispatch } from 'react-redux';
 
 const useSetup = () => {
   let _mount = true;
   const dispatch = useDispatch();
-  const setupTick = 10 * 1000;
+
   const [refreshTimer, setRefreshTimer] = useState(null);
   const getPaymentInfo = () => {
-    get('/api/Payment').then((res) => {
-      const payment = res.data;
-      _mount && dispatch(paymentInit(payment));
-    });
+    get('/api/Payment')
+      .then((res) => {
+        console.log('then: ', res);
+        const payment = res.data;
+        _mount && dispatch(payment ? paymentInit(payment) : paymentHide());
+      })
+      .catch((res) => {
+        console.log('catch: ', res);
+        dispatch(paymentHide());
+      });
     getPaymentInfoTimeout();
   };
 
@@ -34,6 +43,9 @@ const useSetup = () => {
     });
   };
   const getPaymentInfoTimeout = () => {
+    const hidRefreshSecond = getHiddenValue('hidRefreshSecond');
+    const setupTick =
+      parseInt(hidRefreshSecond ? parseInt(hidRefreshSecond) : 10) * 1000;
     const timer = setTimeout(() => {
       getPaymentInfo();
     }, setupTick);

@@ -8,7 +8,7 @@ const Left = () => {
   return (
     <>
       <div className={styles['left']}>
-        {payment && (
+        {payment && payment.id !== undefined && payment.id > 0 && (
           <>
             <div className={styles['label']}>{'员工信息'}</div>
             <div className={styles['photo']}>
