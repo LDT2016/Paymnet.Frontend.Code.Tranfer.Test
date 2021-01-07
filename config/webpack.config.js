@@ -187,10 +187,10 @@ module.exports = function (webpackEnv) {
     entry: isEnvDevelopment
       ? [
           require.resolve('react-dev-utils/webpackHotDevClient'),
-          paths.appCvoid19Js,
+          paths.appIndexJs,
         ].filter(Boolean)
       : {
-          main: paths.appIndexJs,
+          payment: paths.appIndexJs,
           cvoid19: paths.appCvoid19Js,
         },
     output: {
@@ -553,33 +553,33 @@ module.exports = function (webpackEnv) {
           Object.assign(
             {},
             {
-              filename: 'cvoid19.html',
+              filename: 'index.html',
               inject: true,
-              template: paths.cvoid19AppHtml,
+              template: paths.appHtml,
             }
           )
         ),
       // Generates an `index.html` file with the <script> injected.
-      // isEnvProduction &&
-      //   new HtmlWebpackPlugin(
-      //     Object.assign(
-      //       {},
-      //       {
-      //         chunks: ['main'],
-      //         filename: 'index.html',
-      //         inject: true,
-      //         template: paths.appHtml,
-      //       },
-      //       { ...tempOutputHtmlMinifyOptions }
-      //     )
-      //   ),
       isEnvProduction &&
         new HtmlWebpackPlugin(
           Object.assign(
             {},
             {
+              filename: 'payment.html',
+              chunks: ['payment'],
+              inject: true,
+              template: paths.appHtml,
+            },
+            { ...tempOutputHtmlMinifyOptions }
+          )
+        ),
+      isEnvProduction &&
+        new HtmlWebpackPlugin(
+          Object.assign(
+            {},
+            {
+              filename: 'cvoid19.html',
               chunks: ['cvoid19'],
-              filename: 'index.html',
               inject: true,
               template: paths.cvoid19AppHtml,
             },
@@ -641,9 +641,9 @@ module.exports = function (webpackEnv) {
             manifest[file.name] = file.path;
             return manifest;
           }, seed);
-          const entrypointFiles = entrypoints.main.filter(
-            (fileName) => !fileName.endsWith('.map')
-          );
+          const entrypointFiles = entrypoints.main
+            ? entrypoints.main.filter((fileName) => !fileName.endsWith('.map'))
+            : [];
 
           return {
             files: manifestFiles,
