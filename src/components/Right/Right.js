@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Top from '../Top';
+import { get } from '../../utils/request';
 import { getPaymentInfo } from '../selector';
-import { put } from '../../utils/request';
 import styles from './Right.module.scss';
 import { ttsAction1 } from '../../utils/common';
 
@@ -11,7 +11,7 @@ const Right = () => {
   const dispatch = useDispatch();
   const payment = useSelector(getPaymentInfo);
   const paymentHideAction = (id, timeout) => {
-    const _action = () => put(`/api/Payment/${id}`).then((res) => {});
+    const _action = () => get(`/api/PaymentHide/${id}`).then((res) => {});
     if (timeout) {
       setTimeout(() => _action, 3 * 1000);
     } else {
