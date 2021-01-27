@@ -184,15 +184,27 @@ module.exports = function (webpackEnv) {
     //   // initialization, it doesn't blow up the WebpackDevServer client, and
     //   // changing JS code would still trigger a refresh.
     // ].filter(Boolean),
-    entry: isEnvDevelopment
-      ? [
+    // entry: isEnvDevelopment
+    //   ? [
+    //       require.resolve('react-dev-utils/webpackHotDevClient'),
+    //       paths.appIndexJs,
+    //     ].filter(Boolean)
+    //   : {
+    //       payment: paths.appIndexJs,
+    //       cvoid19: paths.appCvoid19Js,
+    //     },
+    entry: {
+      payment: [
+        isEnvDevelopment &&
           require.resolve('react-dev-utils/webpackHotDevClient'),
-          paths.appIndexJs,
-        ].filter(Boolean)
-      : {
-          payment: paths.appIndexJs,
-          cvoid19: paths.appCvoid19Js,
-        },
+        paths.appIndexJs,
+      ].filter(Boolean),
+      cvoid19: [
+        isEnvDevelopment &&
+          require.resolve('react-dev-utils/webpackHotDevClient'),
+        paths.appCvoid19Js,
+      ].filter(Boolean),
+    },
     output: {
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
@@ -202,7 +214,7 @@ module.exports = function (webpackEnv) {
       // In development, it does not produce real files.
       filename: isEnvProduction
         ? 'static/js/[name].js'
-        : isEnvDevelopment && 'static/js/bundle.js',
+        : isEnvDevelopment && 'static/js/[name].js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
