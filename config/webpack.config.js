@@ -204,6 +204,11 @@ module.exports = function (webpackEnv) {
           require.resolve('react-dev-utils/webpackHotDevClient'),
         paths.appCvoid19Js,
       ].filter(Boolean),
+      getIp: [
+        isEnvDevelopment &&
+          require.resolve('react-dev-utils/webpackHotDevClient'),
+        paths.appGetIpJs,
+      ].filter(Boolean),
     },
     output: {
       // The build folder.
@@ -594,6 +599,19 @@ module.exports = function (webpackEnv) {
               chunks: ['cvoid19'],
               inject: true,
               template: paths.cvoid19AppHtml,
+            },
+            { ...tempOutputHtmlMinifyOptions }
+          )
+        ),
+      isEnvProduction &&
+        new HtmlWebpackPlugin(
+          Object.assign(
+            {},
+            {
+              filename: 'getIp.html',
+              chunks: ['getIp'],
+              inject: true,
+              template: paths.getIpAppHtml,
             },
             { ...tempOutputHtmlMinifyOptions }
           )
